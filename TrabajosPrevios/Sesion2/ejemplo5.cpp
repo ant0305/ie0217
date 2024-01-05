@@ -8,9 +8,12 @@ using namespace std;
 
 int main() {
 
-int number = 5;
-if (number > 0) {
-cout << "Numero mayor a cero!";
-}
+    int number = 5;//Variable local
+    //Esturctura condicional muy simple
+    if (number > 0) {
+
+        cout << "Numero mayor a cero!";
+        
+    }
 return 0;
 }

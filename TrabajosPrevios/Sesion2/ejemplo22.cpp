@@ -2,7 +2,8 @@
 
 /* 
 El programa hace multiplicaciones sencillas pero usa
-dos funciones con el mismo nombre
+dos funciones con el mismo nombre esto se logra gracias
+a que se usa diferente tipo de parametros
 */
 
 using namespace std;

@@ -1,5 +1,9 @@
 #include <iostream> 
 
+/* 
+El programa muestra cual numero es entero y cual flotante
+*/
+
 
 using namespace std;
 

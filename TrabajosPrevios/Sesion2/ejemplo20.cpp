@@ -1,4 +1,9 @@
 #include <iostream>
+
+/* 
+El programa retorna una suma sencilla
+*/
+
 using namespace std;
 //Declara la funcion
 int add(int a, int b) {

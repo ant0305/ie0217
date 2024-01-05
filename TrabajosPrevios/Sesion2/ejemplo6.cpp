@@ -10,8 +10,8 @@ int main() {
     //Pasa por las estructuras condicionales
     if (number > 0) {
 
-        cout << "Numero mayor a cero!";
-        
+        cout << "Numero mayor es a cero!";
+
     }
     else {
 
