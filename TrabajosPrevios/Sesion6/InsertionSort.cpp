@@ -8,7 +8,7 @@ ordenar un arreglo de numeros enteros en orden ascedente
 
 using namespace std;
 
-//Funcion para imprimir la matriz
+//Funcion para el arreglo
 void printArray(int array[], int size) {
     for (int i = 0; i < size; i++) {
       cout << array[i] << " ";
@@ -32,7 +32,8 @@ while (key < array[j] && j >= 0) {
 
 int main() {
     int data[] = {9, 5, 1, 4, 3};
-    int size = sizeof(data) / sizeof(data[0]); insertionSort(data, size);
+    int size = sizeof(data) / sizeof(data[0]); 
+    insertionSort(data, size);
     cout << "Sorted array in ascending order:\n";
     printArray(data, size);
 }
