@@ -5,8 +5,10 @@ class JuegoAdivinanza {
 public:
     void iniciarMenu();
 
-
     void jugarAdivinanza();
+
+private:
+    int modo;
 
 };
 
