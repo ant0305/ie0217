@@ -1,5 +1,7 @@
 #include "adivinanza.hpp"
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
@@ -32,6 +34,20 @@ do {
 
 
 void JuegoAdivinanza::jugarAdivinanza() {
+    // Configuración del intervalo
+    int inicio, fin;
+    cout << "Ingrese el inicio del intervalo: ";
+    cin >> inicio;
+    cout << "Ingrese el fin del intervalo: ";
+    cin >> fin;
+
+    // Generación de número aleatorio
+    srand(time(0));
+    int numeroSecreto = inicio + rand() % (fin - inicio + 1);
+
+    // Configuración del número de intentos
+    int intentosMaximos = (fin - inicio + 1) / 3;
+
 
 
 

@@ -5,7 +5,6 @@ class JuegoAdivinanza {
 public:
     void iniciarMenu();
 
-    void intervalo();
 
     void jugarAdivinanza();
 
