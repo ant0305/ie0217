@@ -34,18 +34,18 @@ do {
 
 
 void JuegoAdivinanza::jugarAdivinanza() {
-    // Configuración del intervalo
+    // Configuracion del intervalo
     int inicio, fin;
     cout << "Ingrese el inicio del intervalo: ";
     cin >> inicio;
     cout << "Ingrese el fin del intervalo: ";
     cin >> fin;
 
-    // Generación de número aleatorio
+    // Generacion de numero aleatorio
     srand(time(0));
     int numeroSecreto = inicio + rand() % (fin - inicio + 1);
 
-    // Configuración del número de intentos
+    // Configuracion del numero de intentos
     int intentosMaximos = (fin - inicio + 1) / 3;
 
 
