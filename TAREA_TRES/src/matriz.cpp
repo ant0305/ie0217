@@ -20,7 +20,7 @@ char Matriz<T>::pedirTipoOperacion() {
         default: throw std::invalid_argument("Operacion no valida");
     }
 }
-//
+
 template<typename T>
 void Matriz<T>::pedirDimensionesYDatos() {
     std::cout << "Ingrese el numero de filas y columnas de la matriz: ";
@@ -35,26 +35,28 @@ void Matriz<T>::pedirDimensionesYDatos() {
 
     for (int i = 0; i < filas; ++i) {
         for (int j = 0; j < columnas; ++j) {
-            while (true) {
+        while (true) {
             std::cout << "Ingrese el elemento [" << i << "][" << j << "]: ";
-            T valor;
             std::string linea;
             std::getline(std::cin, linea);
             std::stringstream ss(linea);
+            T valor;
             ss >> valor;
             if (!ss.fail() && ss.eof()) {
+                if (std::is_same<T, float>::value && linea.find('.') == std::string::npos) {
+                    std::cout << "Ingrese un numero flotante: ";
+                    continue;
+                }
                 datos[i][j] = valor;
                 break;
             } else {
-                std::cout << "Entrada no valida. Intente otra vez: ";
+                std::cout << "Entrada no valida: ";
             }
         }
     }
 }
 }
 
-
-//
 template<typename T>
 void Matriz<T>::colocarElemento(int fila, int columna, T valor) {
     if (fila < 0 || fila >= filas || columna < 0 || columna >= columnas) {
@@ -69,5 +71,51 @@ T Matriz<T>::obtenerElemento(int fila, int columna) const {
         throw std::out_of_range("indice fuera de rango");
     }
     return datos[fila][columna];
+}
+
+template<typename T>
+Matriz<T> OperacionesBasicas<T>::suma(const Matriz<T>& m1, const Matriz<T>& m2) {
+    if (m1.obtenerFilas() != m2.obtenerFilas() || m1.obtenerColumnas() != m2.obtenerColumnas()) {
+        throw std::invalid_argument("Las dimensiones de las matrices deben ser iguales para la suma.");
+    }
+    Matriz<T> resultado(m1.obtenerFilas(), m1.obtenerColumnas());
+    for (int i = 0; i < m1.obtenerFilas(); ++i) {
+        for (int j = 0; j < m1.obtenerColumnas(); ++j) {
+            resultado.colocarElemento(i, j, m1.obtenerElemento(i, j) + m2.obtenerElemento(i, j));
+        }
+    }
+    return resultado;
+}
+
+template<typename T>
+Matriz<T> OperacionesBasicas<T>::resta(const Matriz<T>& m1, const Matriz<T>& m2) {
+    if (m1.obtenerFilas() != m2.obtenerFilas() || m1.obtenerColumnas() != m2.obtenerColumnas()) {
+        throw std::invalid_argument("Las dimensiones de las matrices deben ser iguales para la resta.");
+    }
+    Matriz<T> resultado(m1.obtenerFilas(), m1.obtenerColumnas());
+    for (int i = 0; i < m1.obtenerFilas(); ++i) {
+        for (int j = 0; j < m1.obtenerColumnas(); ++j) {
+            resultado.colocarElemento(i, j, m1.obtenerElemento(i, j) - m2.obtenerElemento(i, j));
+        }
+    }
+    return resultado;
+}
+
+template<typename T>
+Matriz<T> OperacionesBasicas<T>::multiplicacion(const Matriz<T>& m1, const Matriz<T>& m2) {
+    if (m1.obtenerColumnas() != m2.obtenerFilas()) {
+        throw std::invalid_argument("El numero de columnas de la primera matriz debe ser igual al numero de filas de la segunda para la multiplicacion.");
+    }
+    Matriz<T> resultado(m1.obtenerFilas(), m2.obtenerColumnas());
+    for (int i = 0; i < resultado.obtenerFilas(); ++i) {
+        for (int j = 0; j < resultado.obtenerColumnas(); ++j) {
+            T suma = T();
+            for (int k = 0; k < m1.obtenerColumnas(); ++k) {
+                suma += m1.obtenerElemento(i, k) * m2.obtenerElemento(k, j);
+            }
+            resultado.colocarElemento(i, j, suma);
+        }
+    }
+    return resultado;
 }
 
