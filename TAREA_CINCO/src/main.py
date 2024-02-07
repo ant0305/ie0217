@@ -2,6 +2,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 # Se cargan los datos del archivo
 nombre_archivo = 'archivocsv.csv'
@@ -293,3 +294,39 @@ plt.ylabel('Total de Viajes')
 plt.xticks(rotation=45)
 # Mostrar el codigo
 plt.show()
+
+print('\n Segunda parte de la practica: \n')
+
+# Se crean las calificaciones
+calificaciones = np.array([
+    [75, 88, 92, 70, 65],
+    [80, 85, 88, 90, 95],
+    [78, 82, 84, 76, 80],
+    [90, 92, 94, 88, 85],
+    [85, 87, 89, 93, 90]
+])
+
+
+# Funcion para calcular los promedios
+def calcular_promedios(calificaciones):
+    promedio_estudiantes = np.mean(calificaciones, axis=1)
+    promedio_asignaturas = np.mean(calificaciones, axis=0)
+    return promedio_estudiantes, promedio_asignaturas
+
+
+# Se calculan los promedios
+promedio_estudiantes, promedio_asignaturas = calcular_promedios(calificaciones)
+
+# Se encuentra la calificacion maxima por estudiante
+max_calificaciones_estudiantes = np.max(calificaciones, axis=1)
+
+# Se calcula la suma total de calificaciones por asignatura
+suma_total_asignaturas = np.sum(calificaciones, axis=0)
+
+# Se imprimen los resultados
+print("Conjunto de datos de calificaciones:\n", calificaciones)
+print("\nPromedio de calificaciones por estudiante:", promedio_estudiantes)
+print("Promedio de calificaciones por asignatura:", promedio_asignaturas)
+print("\nCalificacion maxima obtenida por cada estudiante:",
+      max_calificaciones_estudiantes)
+print("Suma total de calificaciones por asignatura:", suma_total_asignaturas)
